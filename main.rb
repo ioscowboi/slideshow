@@ -8,13 +8,13 @@ DATABASE.results_as_hash = true
 
 require_relative "reel_handler"
 
-get "/:id" do
-  @slides = Reel_Handler.next_slide(:id)
-  slides_hash = @slides.map{ |to_arrays|
-      to_arrays.to_hash
-    }
+get "/update/:id" do
+  change_num = params[:id].to_i
+  @slides = Reel_Handler.all
+  slides_hash = @slides[change_num].to_hash
+  json_slides = slides_hash.to_json
     
-    json_slides = slides_hash.to_json
+    binding.pry
 end
 
 get "/" do
