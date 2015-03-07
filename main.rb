@@ -13,8 +13,6 @@ get "/update/:id" do
   @slides = Reel_Handler.all
   slides_hash = @slides[change_num].to_hash
   json_slides = slides_hash.to_json
-    
-    binding.pry
 end
 
 get "/" do

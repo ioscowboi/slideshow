@@ -8,25 +8,18 @@ function move_forward(event) {
 }
 
 function edit_prompt(event) {
-  their_choice = prompt("What student do you want to edit?");
-  attribute_to_edit = prompt("What attribute would you like to edit?");
-  new_edit = prompt("What would you like to change " + attribute_to_edit + " to?");
-  set_edit_params();
+  next_slide += 1;
+next_slideshow_param();
 }
 
-function set_edit_params() {
+function next_slideshow_param() {
   get_new_slide = new XMLHttpRequest;
-  get_new_slide.open("post", "http://localhost:4567/update/"+their_choice);
+  get_new_slide.open("post", "http://localhost:4567/update/"+next_slide"");
   get_new_slide.send();
   get_new_slide.addEventListener("load", function(event){
 	  response =JSON.parse(this.response);
-	  if(attribute_to_edit === "id"){
-		  get_new_slide.id= new_edit;
-	  }
-	  else  {
-		  alert("Didn't work");
-	  }
-	  sendData(get_new_slide);
+
+    sendData(get_new_slide);
   
   })
 }
