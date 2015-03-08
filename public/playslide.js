@@ -1,6 +1,18 @@
 var next_slide = 0;
 
 
+var parser = function(event){
+              response_from_route_handler =JSON.parse(this.response);
+
+     
+              
+              update_title = response_from_route_handler.title 
+              new_title = document.getElementById("title").innerHTML = update_title;
+        
+              update_body = response_from_route_handler.body
+              new_body = document.getElementById("body").innerHTML = update_body;
+           };
+    
   document.getElementById("forward").addEventListener('click', move_forward);
 
   function move_forward(event) {
@@ -12,19 +24,7 @@ var next_slide = 0;
     new_slide = new XMLHttpRequest;
     new_slide.open("get", "http://localhost:4567/update/"+next_slide);
     new_slide.send();
-    new_slide.addEventListener("load", function(event){
-      response_from_route_handler =JSON.parse(this.response);
-      debugger
-      
-        update_title = response_from_route_handler.title 
-        update_body = response_from_route_hanlder.body
-        new_title = document.getElementById("tile").innerHTML = update_title;
-
-        new_body = document.getElementById("body").innerHTML = update_body;
-
-      sendData(new_title);
-      send_Date(new_body);
-    });
+    new_slide.addEventListener("load", parser, false);
   }
 
 
