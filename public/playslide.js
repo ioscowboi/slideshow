@@ -1,28 +1,68 @@
-alert("This proves the file is being read !");
+var next_slide = 0;
+
+
+  document.getElementById("forward").addEventListener('click', move_forward);
+
+  function move_forward(event) {
+    next_slide +=1;
+    get_new_slide();
+  }
+
+  function get_new_slide() {
+    new_slide = new XMLHttpRequest;
+    new_slide.open("get", "http://localhost:4567/update/"+next_slide);
+    new_slide.send();
+    new_slide.addEventListener("load", function(event){
+      response_from_route_handler =JSON.parse(this.response);
+      debugger
+      
+        update_title = response_from_route_handler.title 
+        update_body = response_from_route_hanlder.body
+        new_title = document.getElementById("tile").innerHTML = update_title;
+
+        new_body = document.getElementById("body").innerHTML = update_body;
+
+      sendData(new_title);
+      send_Date(new_body);
+    });
+  }
+
+
+
 // window.onload = function(){
-//   var slide_displayer = document.getElementById("forward").addEventListener("click", move_forward)
-//   // .addEventListener('click', move_forward);
+//   var next_slide = 0;
+//   var slide_forward = document.getElementById("forward").addEventListener("click", move_forward);
+//   var slide_backward = document.getElementById("backward").addEventListener("click", move_backward);
+//
 // //
-//   var next_slide = 1;
 //
 //   function move_forward(event) {
-//     document.getElementById("title").innerHTML = get_a_new_slide;
+//     next_slide += 1;
+//     next_slideshow_param(next_slide);
+//
 //     document.getElementById("body").innerHTML = get_a_new_slide;
 //   }
 //
+//   function move_backward(event) {
+//     next_slide -= 1;
+//     next_slideshow_param(next_slide);
+//     debugger
+//     document.getElementById("title").innerHTML = get_a_new_slide;
+//     document.getElementById("body").innerHTML = get_a_new_slide;
+//   }
 //   function get_a_new_slide(event) {
-//     next_slide += 1;
 //     next_slideshow_param();
 //   }
 //
 //   function next_slideshow_param() {
 //     get_new_slide = new XMLHttpRequest;
-//     get_new_slide.open("post", "http://localhost:4567/update/"+next_slide"");
+//     get_new_slide.open("post", "http://localhost:4567/update/"+next_slide);
 //     get_new_slide.send();
 //     get_new_slide.addEventListener("load", function(event){
 //       response =JSON.parse(this.response);
 //
-//       sendData(get_new_slide);
+//       new_element_value = sendData(get_new_slide);
+//       document.getElementById("title").innerHTML = new_element_value;
 //
 //     })
 //   }
@@ -53,7 +93,7 @@ alert("This proves the file is being read !");
 //     });
 //
 //     // We setup our request
-//     XHR.open('POST', "http://localhost:4567/students/edited");
+//     XHR.open('POST', "http://localhost:4567");
 //
 //     // We add the required HTTP header to handle a form data POST request
 //     XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
