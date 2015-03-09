@@ -33,14 +33,18 @@ function move_forward(event) {
     back_one   +=1;
     if (back_one != next_slide){
       next_slide = next_slide - 2;
+      back_one = next_slide;
     }  
     if (next_slide < 0){
       next_slide = (slide_size -1);
+      back_one = next_slide;
     }
     
-    if (next_slide == slide_size){
+    if (next_slide >= slide_size){
       next_slide = 0;
+      back_one = next_slide;
     }
+
     get_new_slide();
     event.preventDefault();
   }

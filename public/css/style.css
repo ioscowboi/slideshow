@@ -4,24 +4,29 @@ div{
   max-width: 800px;
   max-height: 800px;
   background-color: rgba(0,0,255, .5);
-  margin: 0px 10px 0px 65px;
   border-radius: 12px 12px 12px 12px;
-  position: relative;
+  margin: auto;
+
+}
+
+div.wrapper{
+  display: flex;
+  display: -moz-flex;
+  display: -o-flex;
+  display: -webkit-flex;
+  -webkit-display: flex;
+  width: 550px;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: space-between;
+  -o-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  background-color: rgba(0,0,0, .0);
 }
 
 #slide_size{
   display: none;
-}
-
-div.main{
-  position: relative;
-}
-
-#wrapper{
-  display: inline-block;
-  margin: auto;
-  width: 100%;
-  background-color: rgba(0,0,0,.0);
 }
 
 h1{
@@ -35,17 +40,15 @@ p{
   text-align: center;
   margin: auto;
   color: rgba(255, 255, 255, .85);
-  padding: 10px 25px 10px 25px;
+
 }
 
 div.button{
-  position: relative;
   width: 50px;
   height: 195px;
   max-width: 50px;
   max-height: 200px;
   background-color: rgba(0,0,50, .5);
-  margin: 2px 2px 2px 2px;
   border-radius: 12px 12px 12px 12px;
 }
 
