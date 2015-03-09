@@ -20,8 +20,7 @@ get "/" do
   slides_hash = @slides.map{ |to_arrays|
       to_arrays.to_hash
     }
-    
+    @total_slides = @slides.length
     json_slides = slides_hash.to_json
-    
     erb :homepage
 end

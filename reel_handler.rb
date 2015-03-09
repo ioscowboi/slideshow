@@ -1,4 +1,4 @@
-# 
+
 class Reel_Handler
   attr_accessor :id, :title, :body
   

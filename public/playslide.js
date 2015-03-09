@@ -1,6 +1,7 @@
 
 var next_slide = 0;
-
+var back_one   = 0;
+var slide_size = parseInt(document.getElementById("slide_size").innerHTML);
 
 var parser = function(event){
               response_from_route_handler =JSON.parse(this.response);
@@ -12,27 +13,46 @@ var parser = function(event){
               new_body = document.getElementById("body").innerHTML = update_body;
 };
 
-var slider = function(){
-             document.getElementById("forward").addEventListener('click', move_forward);
-};
-         
 
-  function move_forward(event) {
+var slider = document.getElementById("forward").addEventListener('click', function(){
+               move_forward(event);}
+             );
+
+ 
+var backslider = document.getElementById("backward").addEventListener('click', function(){
+             move_backward(event);}
+           );        
+
+function move_backward(event) {
+  back_one -=2;
+  move_forward(event);
+}
+
+function move_forward(event) {
     next_slide +=1;
+    back_one   +=1;
+    if (back_one != next_slide){
+      next_slide = next_slide - 2;
+    }  
+    if (next_slide < 0){
+      next_slide = (slide_size -1);
+    }
+    
+    if (next_slide == slide_size){
+      next_slide = 0;
+    }
     get_new_slide();
-    event.preventDefault;
+    event.preventDefault();
   }
-
+  
   function get_new_slide() {
     new_slide = new XMLHttpRequest;
     new_slide.open("get", "http://localhost:4567/update/"+next_slide);
     new_slide.send();
     new_slide.addEventListener("load", parser);
-    slider.onclick = function(){return false};
-    slider.onclick;
   }
 
-  slider();
+
 
 // window.onload = function(){
 //   var next_slide = 0;
