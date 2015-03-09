@@ -9,6 +9,9 @@ div{
   position: relative;
 }
 
+#slide_size{
+  display: none;
+}
 
 div.main{
   position: relative;
