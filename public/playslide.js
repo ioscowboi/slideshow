@@ -15,10 +15,19 @@ var parser = function(event){
 var slider = function(){
              document.getElementById("forward").addEventListener('click', move_forward);
 };
-         
+    
+var backslide = function(){
+             document.getElementById("forward").addEventListener('click', move_backward);
+};     
 
   function move_forward(event) {
     next_slide +=1;
+    get_new_slide();
+    event.preventDefault();
+  }
+  
+  function move_backward(event) {
+    next_slide -=1;
     get_new_slide();
     event.preventDefault;
   }
