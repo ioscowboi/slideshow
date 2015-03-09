@@ -1,33 +1,38 @@
+
 var next_slide = 0;
 
 
 var parser = function(event){
               response_from_route_handler =JSON.parse(this.response);
 
-     
-              
-              update_title = response_from_route_handler.title 
+              update_title = response_from_route_handler.title; 
               new_title = document.getElementById("title").innerHTML = update_title;
         
-              update_body = response_from_route_handler.body
+              update_body = response_from_route_handler.body;
               new_body = document.getElementById("body").innerHTML = update_body;
-           };
-    
-  document.getElementById("forward").addEventListener('click', move_forward);
+};
+
+var slider = function(){
+             document.getElementById("forward").addEventListener('click', move_forward);
+};
+         
 
   function move_forward(event) {
     next_slide +=1;
     get_new_slide();
+    event.preventDefault;
   }
 
   function get_new_slide() {
     new_slide = new XMLHttpRequest;
     new_slide.open("get", "http://localhost:4567/update/"+next_slide);
     new_slide.send();
-    new_slide.addEventListener("load", parser, false);
+    new_slide.addEventListener("load", parser);
+    slider.onclick = function(){return false};
+    slider.onclick;
   }
 
-
+  slider();
 
 // window.onload = function(){
 //   var next_slide = 0;
