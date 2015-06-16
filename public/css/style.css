@@ -54,6 +54,7 @@ div.button{
 
 #lefty{
     float: left;
+    background: url('../public/images/left.png');
 }
 
 #righty{
